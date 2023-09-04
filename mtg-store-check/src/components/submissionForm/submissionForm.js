@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
-import { useState } from "react";
-const submissionForm = () =>{
-  const [CardImport,setCardImport] = useState("") 
+import React, { Fragment, useState } from "react";
+
+const SubmissionForm = () =>{
+  
+  const [cardImport,  setCardImport] = useState(0); 
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -20,4 +21,4 @@ const submissionForm = () =>{
     )
 }
 
-export default submissionForm
+export default SubmissionForm
