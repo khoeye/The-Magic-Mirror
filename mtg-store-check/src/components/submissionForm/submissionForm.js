@@ -1,24 +1,46 @@
 import React, { Fragment, useState } from "react";
 
-const SubmissionForm = () =>{
-  
-  const [cardImport,  setCardImport] = useState(0); 
+const SubmissionForm = () => {
+  const [cardImport, setCardImport] = useState("");
+  const [submitClicked, setSubmitClicked] = useState(false);
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-  }  
-  
-  return(
-      
-<Fragment>
-    <form onSubmit={handleSubmit}>
-      <input type="text" id="deckList" name="deckList" onChange={(event) => {
-          setCardImport(event.target.value);
-        }}/>
-      <button>Submit</button>
-      </form>
-</Fragment>
-    )
-}
+    setSubmitClicked(true);
+    event.preventDefault();
+  };
 
-export default SubmissionForm
+  const inputHandler = (value) => {
+    setCardImport(value);
+    fetchData(value);
+  }
+
+  const fetchData = (value) => {
+    setCardImport(value);
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((json) => {
+        const results = json.filter((user) =>
+        {return value && user && user.name && user.name.toLowerCase().includes(value)}
+        ) 
+        console.log(results)
+      });
+  };
+
+  return (
+    <Fragment>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          id="deckList"
+          name="deckList"
+          onChange={(event) => {
+            inputHandler(event.target.value);
+          }}
+        />
+        <button>Submit</button>
+      </form>
+    </Fragment>
+  );
+};
+
+export default SubmissionForm;
