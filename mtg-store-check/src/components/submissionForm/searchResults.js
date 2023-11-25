@@ -1,10 +1,16 @@
 import React, { Fragment } from "react";
+import "./searchResults.css"
 
-const SearchResults = () => {
+
+const SearchResults = ({results}) => {
+    
+
     return (
-        <Fragment>
-            
-        </Fragment>
+        <div className="search-results">
+            {results.map((result, id) => {
+        return <div key={id}>{result.name}</div>
+    })}
+        </div>
      );
 }
  

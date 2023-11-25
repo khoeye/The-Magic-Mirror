@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import sleep from "sleep-promise";
 
 const SearchBar = ({setResults}) => {
     const [cardImport, setCardImport] = useState("");
@@ -23,7 +24,8 @@ const SearchBar = ({setResults}) => {
           {return value && user && user.name && user.name.toLowerCase().includes(value)}
           ) 
           setResults(results)
-        });
+        })
+        .then(sleep(300))
     };
 
     return (

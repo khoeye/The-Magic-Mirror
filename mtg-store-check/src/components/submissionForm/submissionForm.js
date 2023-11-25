@@ -8,7 +8,7 @@ const SubmissionForm = () => {
   return (
 <div>
     <SearchBar setResults={setResults} />
-    <SearchResults/>
+    <SearchResults results={results}/>
 </div>
   );
 };
