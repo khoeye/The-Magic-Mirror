@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
 import sleep from "sleep-promise";
-import axios from "axios";
 
 const SearchBar = ({setResults}) => {
     const [cardImport, setCardImport] = useState("");
@@ -27,10 +26,11 @@ if (Arr.data){
   setCardResult(mapArr)
 }}
 async function getResponse(value) {
-  const url = 'https://api.scryfall.com/cards/autocomplete?' + `q=${value}`
+  const url = `https://api.scryfall.com/cards/autocomplete?q=${value}`
   console.log(url)
 	const response = await fetch(url);
 	const data = await response.json();
+  sleep(500)
   return data
 }
 
