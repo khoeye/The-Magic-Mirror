@@ -4,6 +4,7 @@ import axios from "axios";
 
 const SearchBar = ({setResults}) => {
     const [cardImport, setCardImport] = useState("");
+    const [cardResult, setCardResult] = useState("")
     const [submitClicked, setSubmitClicked] = useState(false);
   
     const handleSubmit = (event) => {
@@ -11,55 +12,29 @@ const SearchBar = ({setResults}) => {
       event.preventDefault();
     };
 
-    const inputHandler = (value) => {
-      const params = {
-        q: value,
-    };
-    console.log(getData(value))
-      setCardImport(value);
-      // fetchData(value);
+const inputHandler = (value) => {
+
+  getResponse(value).then(x => {
+    setCardImport(x)
+  })
+  filterFunc(cardImport);
     }
-
-async function getData(value) {
-  
-  const response = await fetch('https://api.scryfall.com/cards/search?' + new URLSearchParams({
-    q: value.toString(),
-}))
-sleep(2000)
-return response.json(); // parses JSON response into native JavaScript objects
-  
-};
-
-
-    // const fetchData = (value) => {
-    //   setCardImport(value);
-    //   axios.get('https://api.scryfall.com/cards/search', {
-    //     params: {
-    //       q: cardImport
-    //     }
-    //   }, {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Accept': 'application/json',
-    //       'Host': 'http://localhost:3000/'
-    //     }
-    // })
-    //     .then((response) => response.json())
-    //     .then((json) => {
-    //       const results = json.data((name) =>
-    //       {return results}
-    //       ) 
-    //       setResults(results)
-    //     })
-    //     .then(sleep(300))
-    // };
-
-    // async function logMovies() {
-    //   const response = await fetch("https://api.scryfall.com/cards/search?q=magic");
-    //   const movies = await response.json();
-    //   console.log(movies);
-    // }
     
+
+const filterFunc = (Arr) => {
+if (Arr.data){
+  const mapArr = Arr.data.map((data, id) => <li key={id}>{data}</li> )
+  setCardResult(mapArr)
+}}
+async function getResponse(value) {
+  const url = 'https://api.scryfall.com/cards/autocomplete?' + `q=${value}`
+  console.log(url)
+	const response = await fetch(url);
+	const data = await response.json();
+  return data
+}
+
+
 
     return (
     <Fragment>
@@ -72,6 +47,7 @@ return response.json(); // parses JSON response into native JavaScript objects
               inputHandler(event.target.value);
             }}
           />
+          <ul>{cardResult}</ul>
           <button>Submit</button>
         </form>
       </Fragment>);
