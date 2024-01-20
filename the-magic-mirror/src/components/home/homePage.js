@@ -1,12 +1,14 @@
 import React, {Fragment} from "react"
+import Hero from "../hero/hero"
 
 const HomePage = () => {
     
     
     return[
-        <Fragment>
+        <>
+            <Hero />
             <p>This is home</p>
-        </Fragment>
+        </>
     ]
 }
 

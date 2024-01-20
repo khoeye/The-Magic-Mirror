@@ -1,24 +1,26 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "../../pages/Layout";
-import Home from '../../pages/Home';
-import AdvancedSearch from '../../pages/AdvancedSearch';
-import CardSearch from '../../pages/CardSearch';
-
+import styles from "../hero/hero.module.css";
+import { Outlet, Link } from "react-router-dom";
 
 const Hero = (props) => {
-    return (
-        <div>
-            <BrowserRouter>
-        <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="cardSearch" element={<CardSearch />} />
-          <Route path="advancedSearch" element={<AdvancedSearch />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>    
-        </div>
-    )
+  return (
+    <>
+      <div className={styles.}>
+        <button>
+          <Link to="/cardSearch">Card Search</Link>
+        </button>
+
+        <button>
+          <Link to="/">⌂</Link>
+        </button>
+
+        <button>
+          <Link to="/advancedSearch">Advanced Search</Link>
+        </button>
+      </div>
+      <Outlet />
+    </>
+  );
 };
 
-export default Hero
+export default Hero;

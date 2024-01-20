@@ -1,7 +1,7 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import sleep from "sleep-promise";
 
-const SubmissionForm = ({setResults}) => {
+const CardSearch = ({setResults}) => {
     const [cardImport, setCardImport] = useState("");
     const [cardResult, setCardResult] = useState("")
     const [submitClicked, setSubmitClicked] = useState(false);
@@ -53,4 +53,4 @@ async function getResponse(value) {
       </Fragment>);
 }
  
-export default SubmissionForm;
+export default CardSearch;
