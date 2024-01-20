@@ -2,13 +2,16 @@ a{
     text-decoration: none
 }
 
-.cardSearch {
-    background-color: aquamarine;
+.navContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 20%;
 }
-.home{
- text-decoration: none;
-}
+span{
+    height: 100%;
 
-.advancedSearch {
-text-decoration: none;
 }
+button{
+    background-color: #FFC857;
+height: 3rem;}

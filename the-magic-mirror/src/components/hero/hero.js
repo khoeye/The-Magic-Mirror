@@ -2,21 +2,20 @@ import React from "react";
 import styles from "../hero/hero.module.css";
 import { Outlet, Link } from "react-router-dom";
 
-const Hero = (props) => {
+const Hero = () => {
   return (
     <>
-      <div className={styles.}>
-        <button>
-          <Link to="/cardSearch">Card Search</Link>
-        </button>
-
-        <button>
-          <Link to="/">⌂</Link>
-        </button>
-
-        <button>
-          <Link to="/advancedSearch">Advanced Search</Link>
-        </button>
+      <div className={styles.navContainer}>
+        <span>
+          <button>
+            <Link to="/">The Magic Mirror</Link>
+          </button>
+        </span>
+        <span>
+          <button>
+            <Link to="/advancedSearch">Advanced Search</Link>
+          </button>
+        </span>
       </div>
       <Outlet />
     </>

@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react";
 import sleep from "sleep-promise";
 
-const CardSearch = ({setResults}) => {
+const CardSearch = () => {
     const [cardImport, setCardImport] = useState("");
     const [cardResult, setCardResult] = useState("")
-    const [submitClicked, setSubmitClicked] = useState(false);
+    // const [submitClicked, setSubmitClicked] = useState(false);
   
     const handleSubmit = (event) => {
-      setSubmitClicked(true);
+      // setSubmitClicked(true);
       event.preventDefault();
     };
 
