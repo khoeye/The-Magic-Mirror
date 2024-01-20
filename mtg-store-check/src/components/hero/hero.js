@@ -1,14 +1,22 @@
 import React from "react";
-import HomeButton from "./homeButton";
-import ManualSearchButton from "./manualSearchButton";
-import HeroText from "./heroText"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "../../pages/Layout";
+import Home from '../../pages/Home';
+import AdvancedSearch from '../../pages/AdvancedSearch';
+import CardSearch from '../../pages/CardSearch';
+
 
 const Hero = (props) => {
     return (
         <div>
-            <HomeButton /> 
-            <ManualSearchButton />
-            <HeroText />
+            <BrowserRouter>
+        <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="cardSearch" element={<CardSearch />} />
+          <Route path="advancedSearch" element={<AdvancedSearch />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>    
         </div>
     )
 };
