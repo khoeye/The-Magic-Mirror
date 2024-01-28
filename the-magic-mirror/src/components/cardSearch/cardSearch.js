@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import sleep from "sleep-promise";
+import styles from "./cardSearch.module.css"
 
 const CardSearch = () => {
     const [cardImport, setCardImport] = useState("");
@@ -37,20 +38,25 @@ async function getResponse(value) {
 
 
     return (
-    <Fragment>
+    <>
         <form onSubmit={handleSubmit}>
+          <div className={styles.searchBarExplain}>
+          Look for a card below to use it as a template.
+          </div>
           <input
+            className={styles.searchBar}
             type="text"
             id="deckList"
+            placeholder="Type a Card Name"
             name="deckList"
             onChange={(event) => {
               inputHandler(event.target.value);
             }}
-          />
-          <ul>{cardResult}</ul>
-          <button>Submit</button>
+          />{cardResult ? <ul>{cardResult}</ul> : null}
+          
+
         </form>
-      </Fragment>);
+      </>);
 }
  
 export default CardSearch;
