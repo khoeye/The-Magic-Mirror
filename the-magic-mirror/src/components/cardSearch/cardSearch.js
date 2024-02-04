@@ -15,7 +15,7 @@ const inputHandler = (value) => {
     }
     
 
-const filterFunc = (Arr) => {
+const filterFunc = async (Arr) => {
 if (Arr.data){
   const mapArr = Arr.data.map((data, id) => <li key={id}>{data}</li> )
   setCardResult(mapArr)
@@ -34,9 +34,6 @@ async function getResponse(value) {
     return (
     <>
         <form>
-          <div className={styles.searchBarExplain}>
-          Look for a card below to use it as a template.
-          </div>
           <div className={styles.searchBarContainer}>
           <input
             className={styles.searchBar}
@@ -47,7 +44,7 @@ async function getResponse(value) {
             onChange={(event) => {
               inputHandler(event.target.value);
             }}
-          />{cardResult ? <ul>{cardResult}</ul> : null}
+          />{cardResult.length > 0 ? <ul>{cardResult}</ul> : null}
           </div>
 
         </form>
