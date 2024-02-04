@@ -5,12 +5,6 @@ import styles from "./cardSearch.module.css"
 const CardSearch = () => {
     const [cardImport, setCardImport] = useState("");
     const [cardResult, setCardResult] = useState("")
-    // const [submitClicked, setSubmitClicked] = useState(false);
-  
-    const handleSubmit = (event) => {
-      // setSubmitClicked(true);
-      event.preventDefault();
-    };
 
 const inputHandler = (value) => {
 
@@ -39,10 +33,11 @@ async function getResponse(value) {
 
     return (
     <>
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className={styles.searchBarExplain}>
           Look for a card below to use it as a template.
           </div>
+          <div className={styles.searchBarContainer}>
           <input
             className={styles.searchBar}
             type="text"
@@ -53,7 +48,7 @@ async function getResponse(value) {
               inputHandler(event.target.value);
             }}
           />{cardResult ? <ul>{cardResult}</ul> : null}
-          
+          </div>
 
         </form>
       </>);
