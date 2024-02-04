@@ -6,13 +6,13 @@ const Hero = () => {
   return (
     <>
       <div className={styles.navContainer}>
-        <span>
-          <button>
-            <Link to="/">The Magic Mirror</Link>
+        <span className={styles.left}>
+          <button className={styles.left}>
+            <Link to="/">MTG Magic Mirror</Link>
           </button>
         </span>
-        <span>
-          <button>
+        <span className={styles.right}>
+          <button className={styles.right}>
             <Link to="/advancedSearch">Advanced Search</Link>
           </button>
         </span>

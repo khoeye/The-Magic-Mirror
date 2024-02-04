@@ -1,15 +1,10 @@
 import React, { Fragment, useState } from "react";
 import sleep from "sleep-promise";
+import styles from "./cardSearch.module.css"
 
 const CardSearch = () => {
     const [cardImport, setCardImport] = useState("");
     const [cardResult, setCardResult] = useState("")
-    // const [submitClicked, setSubmitClicked] = useState(false);
-  
-    const handleSubmit = (event) => {
-      // setSubmitClicked(true);
-      event.preventDefault();
-    };
 
 const inputHandler = (value) => {
 
@@ -20,7 +15,7 @@ const inputHandler = (value) => {
     }
     
 
-const filterFunc = (Arr) => {
+const filterFunc = async (Arr) => {
 if (Arr.data){
   const mapArr = Arr.data.map((data, id) => <li key={id}>{data}</li> )
   setCardResult(mapArr)
@@ -37,20 +32,23 @@ async function getResponse(value) {
 
 
     return (
-    <Fragment>
-        <form onSubmit={handleSubmit}>
+    <>
+        <form>
+          <div className={styles.searchBarContainer}>
           <input
+            className={styles.searchBar}
             type="text"
             id="deckList"
+            placeholder="Type a Card Name"
             name="deckList"
             onChange={(event) => {
               inputHandler(event.target.value);
             }}
-          />
-          <ul>{cardResult}</ul>
-          <button>Submit</button>
+          />{cardResult.length > 0 ? <ul>{cardResult}</ul> : null}
+          </div>
+
         </form>
-      </Fragment>);
+      </>);
 }
  
 export default CardSearch;
