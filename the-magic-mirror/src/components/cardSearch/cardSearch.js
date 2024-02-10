@@ -5,10 +5,10 @@ import styles from "./cardSearch.module.css"
 const CardSearch = () => {
     const [cardImport, setCardImport] = useState("");
     const [cardResult, setCardResult] = useState("")
+    const [selectedCard, setSelectedCard] = useState("")
 
 const inputHandler = (value) => {
-
-  getResponse(value).then(x => {
+  getResponse(value.toLowerCase()).then(x => {
     setCardImport(x)
   })
   filterFunc(cardImport);
@@ -17,12 +17,11 @@ const inputHandler = (value) => {
 
 const filterFunc = async (Arr) => {
 if (Arr.data){
-  const mapArr = Arr.data.map((data, id) => <li key={id}>{data}</li> )
+  const mapArr = Arr.data.map((data, id) => <li key={id} onClick={(event) => setSelectedCard(event.target.textContent)}>{data}</li> )
   setCardResult(mapArr)
 }}
 async function getResponse(value) {
   const url = `https://api.scryfall.com/cards/autocomplete?q=${value}`
-  console.log(url)
 	const response = await fetch(url);
 	const data = await response.json();
   sleep(500)
