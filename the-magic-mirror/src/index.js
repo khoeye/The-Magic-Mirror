@@ -7,6 +7,7 @@ import {
     createBrowserRouter,
     RouterProvider,
   } from "react-router-dom";
+import CardTemplate from './components/cardTemplate/cardTemplate';
 
   const router = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ import {
     {
         path: "/cardsearch",
         element: <CardSearch />
+    },
+    {
+      path: `/template`,
+      element: <CardTemplate />
     }
   ]);
   
