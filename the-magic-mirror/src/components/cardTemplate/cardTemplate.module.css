@@ -61,3 +61,12 @@ img {
   border-radius: 1rem;
   width: 100%;
 }
+
+.extractButton {
+ position: absolute;
+ width: 8%;
+ height: 8%;
+  background-color: #36393B;
+  color: white;
+  border-radius: 10%;
+}
