@@ -14,7 +14,7 @@
 .headerText {
   color: white;
   text-align: center;
-  font-size: 2rem;
+  font-size: 3rem;
   width: 60%;
   margin: auto;
   margin-top: 1.5%;
@@ -31,7 +31,8 @@
   flex-wrap: wrap;
   align-content: flex-start;
   justify-content: space-between;
-  font-size: 1.3rem;
+  font-size: 1.7rem;
+  margin-left: 1rem;
   & div {
     display: flex;
     height: fit-content;
@@ -66,6 +67,7 @@ img {
  position: absolute;
  width: 8%;
  height: 8%;
+ z-index: 99;
   background-color: #36393B;
   color: white;
   border-radius: 10%;

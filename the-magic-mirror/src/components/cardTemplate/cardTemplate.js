@@ -3,12 +3,9 @@ import React from "react";
 import sleep from "sleep-promise";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import Hero from "../hero/hero";
 import styles from "./cardTemplate.module.css";
 import CardDetailsObject from "./cardDetailsObject";
-import { parseSpaceFunction } from "./helper/textFormater";
-import { Highlightable } from "highlightable";
-import { createPortal } from 'react-dom';
+import { parseSpaceFunction } from "./helper/textFormater";import { createPortal } from 'react-dom';
 
 const CardTemplate = () => {
   const { state } = useLocation();
@@ -49,21 +46,20 @@ const handleDeselection = () => {
   setTextSelected(false)
 }
 const extractButtonStyle = (selected, positionObject) => ({
-  top: positionObject.top,
+  top: positionObject.top ,
   bottom: positionObject.bottom,
-  right: positionObject.right,
-  left: positionObject.left,
+  right: positionObject.right * 1.6 ,
+ left: positionObject.left,
   visibility: selected && extractedText != "" ? 'visible' : 'hidden',
 });
 
 
   return (
     <>
-      <div className={styles.header} onMouseDown={cancelSelection}>
       {createPortal(
    <button className={styles.extractButton} style={extractButtonStyle(textSelected, extractPosition)}>Extract</button>,
     document.body
-  )}
+  )}<div className={styles.header} onMouseDown={cancelSelection}>
         <div className={styles.headerText}>
           Highlight text and select &quot;Extract&quot; for it to be added to
           the search.
