@@ -5,7 +5,8 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import styles from "./cardTemplate.module.css";
 import CardDetailsObject from "./cardDetailsObject";
-import { parseSpaceFunction } from "./helper/textFormater";import { createPortal } from 'react-dom';
+import { parseSpaceFunction } from "./helper/textFormater";
+import SelectedTextBox from "./selectedTextBox";
 
 const CardTemplate = () => {
   const { state } = useLocation();
@@ -14,8 +15,8 @@ const CardTemplate = () => {
   });
   const [cardDetails, setCardDetails] = useState(CardDetailsObject);
   const [extractedText, setExtractedText] = useState({})
-  const [textSelected, setTextSelected] = useState(false)
-  const [extractPosition, setExtractPostion] = useState({top: '0',bottom: '0', right:'0', left:'0'})
+  const [isTextSelected, setIsTextSelected] = useState(false)
+  const [extractedPosition, setExtractedPosition] = useState({})
 
   async function getResponse(value) {
     const url = `https://api.scryfall.com/cards/named?exact=${value}`;
@@ -26,45 +27,36 @@ const CardTemplate = () => {
     return data;
   }
 const cancelSelection = () =>{
-  setTextSelected(false)
+  setIsTextSelected(false)
 
 }
   const handleSelection = () => {
     let selectedText = window.getSelection().toString();
     let selectedTextCategory = window.getSelection().baseNode.parentNode.id.toString()
-    console.log(window.getSelection())
     setExtractedText({...extractedText,
       [selectedTextCategory]: selectedText})
-    setTextSelected(true)
+    setIsTextSelected(true)
     const oRect = window.getSelection().getRangeAt(0).getBoundingClientRect();
-    setExtractPostion({  top: oRect.top,
-      bottom: oRect.bottom,
-      right: oRect.right,
-      left: oRect.left,})
-}
-const handleDeselection = () => {
-  setTextSelected(false)
-}
-const extractButtonStyle = (selected, positionObject) => ({
-  top: positionObject.top ,
-  bottom: positionObject.bottom,
-  right: positionObject.right * 1.6 ,
- left: positionObject.left,
-  visibility: selected && extractedText != "" ? 'visible' : 'hidden',
-});
+    console.log(oRect)
+    setExtractedPosition({     
+      x: oRect.x + (oRect.width / 2) - (80 / 2),
+      y: oRect.y + (oRect.height / 2) - (30 * 4 ) ,
+      width: oRect.width,
+      height: oRect.height,
+    })
 
-
+  }
   return (
     <>
-      {createPortal(
-   <button className={styles.extractButton} style={extractButtonStyle(textSelected, extractPosition)}>Extract</button>,
-    document.body
-  )}<div className={styles.header} onMouseDown={cancelSelection}>
+    <div className={styles.header} onMouseDown={cancelSelection}>
         <div className={styles.headerText}>
           Highlight text and select &quot;Extract&quot; for it to be added to
           the search.
         </div>
       </div>
+      {isTextSelected && extractedPosition.x && extractedPosition.y && (
+        <SelectedTextBox position={extractedPosition}/>
+      )}
       <div className={styles.dataContainer}>
         <div className={styles.leftContainer} onMouseDown={cancelSelection}>
         <div className={styles.leftContainer.cardName} onMouseUp={handleSelection} onDoubleClick={handleSelection} >
