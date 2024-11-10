@@ -3,11 +3,7 @@ background-color: #62B6CB;
 margin-top: 0;
 height: 15rem;
 }
-span {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-   }
+
 .headerText{
     text-align: center;
     color: white;

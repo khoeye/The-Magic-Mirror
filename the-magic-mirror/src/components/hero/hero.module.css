@@ -9,19 +9,21 @@ a {
   display: flex;
   justify-content: space-between;
   width: 100%;
-}
-span {
-  height: 100%;
-  border-color: none;
-  margin-top: 2%;
-  display: flex;
-}
-  span.left {
+  padding-top: 1%;
+  
+  & .navRow {
+    height: 100%;
+    border-color: none;
+    margin-top: 2%;
+    display: flex;
+  }
+  & navRow.left {
     justify-content: flex-start;
   }
-  span.right {
+  & navRow.right {
     justify-content: flex-end;
   }
+}
 
 button {
   background-color: #ffc857;
