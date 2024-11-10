@@ -10,7 +10,7 @@ const SelectedTextBox = ({position, clickHandler}) => {
                 // eslint-disable-next-line react/prop-types
                 transform: `translate3d(${position.x}px, ${position.y}px, 0)`
             }}>
-            <button>Extract</button>
+            <button className={styles.extractButton}>Extract</button>
         </p>
     )
 }

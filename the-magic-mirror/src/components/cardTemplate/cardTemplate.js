@@ -87,37 +87,37 @@ const CardTemplate = () => {
       <div className={styles.dataContainer}>
         <div className={styles.leftContainer}>
         <div className={styles.leftContainer.cardName}>
-          <p>Card Name: </p>
+          <p className={styles.unselectable}>Card Name: </p>
           <p id={'name'} className={styles.textContatiner}>{cardDetails.name}</p>
         </div>
 
         <div className={styles.color}>
-          <p>Color: </p>
+          <p className={styles.unselectable}>Color: </p>
           <p id={'color'} className={styles.textContatiner}>{cardDetails.colors}</p>
         </div>
 
         <div className={styles.manaCost} >
-          <p>Mana Cost: </p>
+          <p className={styles.unselectable}>Mana Cost: </p>
           <p id={'manaCost'} className={styles.textContatiner}>{cardDetails.mana_cost}</p>
         </div>
 
         <div className={styles.cmc} >
-          <p>CMC: </p>
+          <p className={styles.unselectable}>CMC: </p>
           <p id={'cmc'} className={styles.textContatiner}>{cardDetails.cmc}</p>
         </div>
 
         <div className={styles.cardType} >
-          <p>Card Type: </p>
+          <p className={styles.unselectable}>Card Type: </p>
           <p id={'type'} className={styles.textContatiner}>{cardDetails.type_line}</p>
         </div>
 
         <div className={styles.set} >
-          <p>Set: </p>
+          <p className={styles.unselectable}>Set: </p>
           <p id={'set'} className={styles.textContatiner}>{cardDetails.set.toLocaleUpperCase()}</p>
         </div>
 
         <div className={styles.text} >
-          <p>Text: </p>
+          <p className={styles.unselectable}>Text: </p>
           <p id={'oracle'} className={styles.textContatiner}>{parseSpaceFunction(cardDetails.oracle_text)}</p>
       </div>
  </div>
