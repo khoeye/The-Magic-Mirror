@@ -7,6 +7,7 @@ import styles from "./cardTemplate.module.css";
 import CardDetailsObject from "./cardDetailsObject";
 import { parseSpaceFunction } from "./helper/textFormater";
 import SelectedTextBox from "./selectedTextBox";
+import Hero from "../hero/hero";
 
 const CardTemplate = () => {
   const { state } = useLocation();
@@ -75,17 +76,16 @@ const CardTemplate = () => {
 
   return (
     <>
-    <div className={styles.header}>
-        <div className={styles.headerText}>
-          Highlight text and select &quot;Extract&quot; for it to be added to
-          the search.
-        </div>
-      </div>
+    <Hero home={true} advancedSearch={false}/>
       {isTextSelected && extractedPosition.x && extractedPosition.y && (
         <SelectedTextBox position={extractedPosition} clickHandler={handleExtractClick} />
       )}
       <div className={styles.dataContainer}>
         <div className={styles.leftContainer}>
+          <div className={styles.cardDetailsDescription}>
+            Highlight text and select &quot;Extract&quot; for it to be added to
+            the search.
+          </div>
         <div className={styles.leftContainer.cardName}>
           <p className={styles.unselectable}>Card Name: </p>
           <p id={'name'} className={styles.textContatiner}>{cardDetails.name}</p>

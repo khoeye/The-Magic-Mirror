@@ -7,7 +7,7 @@ const HomePage = () => {
     return[
         <>
         <div className={styles.headerContainer}>
-            <Hero />
+            <Hero home={true} advancedSearch={true}/>
             <div className={styles.headerText}>
             Magic Mirror lets you choose a card to use as a template for <br></br>
 searches or to build your own advanced search.
