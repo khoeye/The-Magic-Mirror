@@ -63,12 +63,29 @@ img {
   width: 100%;
 }
 
-.extractButton {
- position: absolute;
- width: 8%;
- height: 8%;
- z-index: 99;
-  background-color: #36393B;
-  color: white;
-  border-radius: 10%;
+.selectedTextButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 80px; 
+  z-index: 99;
+} 
+
+.extractButton{
+    background-color: #36393B;
+    color: white;
+    border-radius: 10%;
+    height: 3rem;
+    width: 4rem;
+}
+  .extractButton:hover {
+    border: 5px solid #62B6CB;
+  }
+
+.unselectable {
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
