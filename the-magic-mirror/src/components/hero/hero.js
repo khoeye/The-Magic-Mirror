@@ -8,14 +8,14 @@ const Hero = ({home, advancedSearch}) => {
     <>
       <div className={styles.navContainer}>
         {home && (
-          <span className={styles.left}>
+          <span className={styles.navRow.left}>
             <button className={styles.left}>
               <Link to="/">MTG Magic Mirror</Link>
             </button>
           </span>
         )}
         {advancedSearch && (
-          <span className={styles.right}>
+          <span className={styles.navRow.right}>
             <button className={styles.right}>
               <Link to="/advancedSearch">Advanced Search</Link>
             </button>

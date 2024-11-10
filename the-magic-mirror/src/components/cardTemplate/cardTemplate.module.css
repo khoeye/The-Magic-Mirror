@@ -6,13 +6,13 @@
 
 .cardDetailsDescription {
     background-color: #62b6cb;
-    height: 12rem;
     width: 100%;
-    margin-bottom: 1%;
-    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-top: 4%;
     margin-left: -1rem;
     border-radius: 0 2rem 2rem 0;
-    font-size: .8rem;
+    font-size: 1.6rem;
+    padding-left: 1rem;
 }
 
 .dataContainer {
@@ -26,18 +26,13 @@
   flex-wrap: wrap;
   align-content: flex-start;
   justify-content: space-between;
-  font-size: 1.7rem;
   padding-left: 1rem;
-  & div {
-    display: flex;
-    height: fit-content;
-    align-items: baseline;
-  }
+
   & .textContatiner {
     background-color: white;
     border-radius: 0.4rem;
     padding: 0.1rem 0.4rem;
-    margin: 0 0.3rem;
+    margin-right: 1rem;
   }
 }
 
@@ -45,18 +40,21 @@
   display: flex;
   width: 50%;
   justify-content: center;
+  pointer-events: none;
 }
+
 .imageContainer {
   height: fit-content;
   width: 60%;
   background: #ffc857;
   border-radius: 1rem;
   border: #ffc857 solid 1.5rem;
-}
+  margin-top: -1.5rem;
 
-img {
+  & img {
   border-radius: 1rem;
   width: 100%;
+  }
 }
 
 .selectedTextButton {
@@ -68,20 +66,33 @@ img {
   z-index: 99;
 } 
 
-.extractButton{
+.extractButton {
     background-color: #36393B;
     color: white;
     border-radius: 10%;
     height: 3rem;
     width: 4rem;
 }
-  .extractButton:hover {
-    border: 5px solid #62B6CB;
-  }
+
+.extractButton:hover {
+    border: 5px solid #ffc857;
+}
 
 .unselectable {
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
+}
+
+.cardDetailsRow {
+    border-bottom: #36393B 1px solid;
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.cardDetails {
+  font-size: 1.2rem;
 }
