@@ -19,6 +19,7 @@ const CardTemplate = () => {
   const [isTextSelected, setIsTextSelected] = useState(false)
   const [extractedPosition, setExtractedPosition] = useState({})
 
+  // This fetches the api data for the card
   async function getResponse(value) {
     const url = `https://api.scryfall.com/cards/named?exact=${value}`;
     const response = await fetch(url);
@@ -28,16 +29,20 @@ const CardTemplate = () => {
     return data;
   }
 
+  //Move the selected text state into the extracted state and return a promise
   const extractText = async () => {
     setExtractedValues(prevState => ([...prevState, selectedText]));
   }
-const handleExtractClick = async () => {
-  await extractText()
-  setIsTextSelected(false);
-  setSelectedText(undefined);
-}
 
-const handleSelection = () => {
+  // Once the text is extracted we reset states
+  const handleExtractClick = async () => {
+    await extractText()
+    setIsTextSelected(false);
+    setSelectedText(undefined);
+  }
+
+  // Get the selected text in the window. If no text is available exit the function else we update state.
+  const handleSelection = () => {
     let getText = window.getSelection().toString();
     let getTextCategory = window.getSelection().baseNode.parentNode.id.toString()
 
@@ -59,6 +64,7 @@ const handleSelection = () => {
     })
   }
 
+    //Listen for mouseup events indicating a user has begun selection. 
     useEffect(() => {
     document.addEventListener('mouseup', handleSelection);
     return () => {
