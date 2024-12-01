@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import sleep from "sleep-promise";
 import styles from "./cardSearch.module.css"
 import { useNavigate } from "react-router-dom";

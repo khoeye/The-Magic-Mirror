@@ -4,7 +4,6 @@ import sleep from "sleep-promise";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import styles from "./cardTemplate.module.css";
-import CardDetailsObject from "./cardDetailsObject";
 import { parseSpaceFunction } from "./helper/textFormater";
 import SelectedTextBox from "./selectedTextBox";
 import Hero from "../hero/hero";
@@ -109,7 +108,7 @@ const CardTemplate = () => {
             <span>
               <span className={styles.unselectable}>Color: </span>
               <span id={"color"} className={styles.textContatiner}>
-                {cardDetails?.colors.length > 1 ? cardDetails.colors : "Colorless"}
+                {cardDetails?.colors.length > 0 ? cardDetails.colors : "Colorless"}
               </span>
             </span>
           </div>
