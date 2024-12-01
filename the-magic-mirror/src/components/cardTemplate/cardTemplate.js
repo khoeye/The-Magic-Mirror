@@ -2,7 +2,7 @@
 import React from "react";
 import sleep from "sleep-promise";
 import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import styles from "./cardTemplate.module.css";
 import CardDetailsObject from "./cardDetailsObject";
 import { parseSpaceFunction } from "./helper/textFormater";
@@ -10,23 +10,23 @@ import SelectedTextBox from "./selectedTextBox";
 import Hero from "../hero/hero";
 
 const CardTemplate = () => {
-  const { state } = useLocation();
-  const [passedHomeCard, setPassedHomeCard] = useState({
-    selectedCard: "The Meep",
-  });
-  const [cardDetails, setCardDetails] = useState(CardDetailsObject);
-  const [selectedText, setSelectedText] = useState(undefined);
+  const locationReturn = useLocation()
+  const [isLoading, setIsLoading] = useState(true)
+  const [cardDetails, setCardDetails] = useState();
+  const [selectedText, setSelectedText] = useState();
   const [extractedValues, setExtractedValues] = useState([]);
   const [isTextSelected, setIsTextSelected] = useState(false);
   const [extractedPosition, setExtractedPosition] = useState({});
 
   // This fetches the api data for the card
   async function getResponse(value) {
+    setIsLoading(true);
     const url = `https://api.scryfall.com/cards/named?exact=${value}`;
     const response = await fetch(url);
     const data = await response.json();
     //This is the recommended delay for calls into scryfall.
     sleep(500);
+    setIsLoading(false)
     return data;
   }
 
@@ -73,6 +73,11 @@ const CardTemplate = () => {
     };
   }, []);
 
+  useEffect(()=>{
+    if (locationReturn?.state.selectedCard){
+    getResponse(locationReturn?.state.selectedCard).then(data=>{setCardDetails(data)})}
+  },[])
+
   return (
     <>
       <Hero home={true} advancedSearch={false} />
@@ -82,7 +87,12 @@ const CardTemplate = () => {
           clickHandler={handleExtractClick}
         />
       )}
-      <div className={styles.dataContainer}>
+      {isLoading && cardDetails &&(
+        <>
+        <p>IS lOADING</p>
+        </>
+      )}
+      {cardDetails && isLoading === false &&(<div className={styles.dataContainer}>
         <div className={styles.leftContainer}>
           <div className={styles.cardDetailsDescription}>
             Highlight text and select &quot;Extract&quot; for it to be added to
@@ -93,13 +103,13 @@ const CardTemplate = () => {
             <span>
               <span className={styles.unselectable}>Card Name: </span>
               <span id={"name"} className={styles.textContatiner}>
-                {cardDetails.name}
+                {cardDetails?.name}
               </span>
             </span>
             <span>
               <span className={styles.unselectable}>Color: </span>
               <span id={"color"} className={styles.textContatiner}>
-                {cardDetails.colors}
+                {cardDetails?.colors.length > 1 ? cardDetails.colors : "Colorless"}
               </span>
             </span>
           </div>
@@ -108,13 +118,13 @@ const CardTemplate = () => {
             <span>
               <span className={styles.unselectable}>Mana Cost: </span>
               <span id={"manaCost"} className={styles.textContatiner}>
-                {cardDetails.mana_cost}
+                {cardDetails?.mana_cost}
               </span>
             </span>
             <span>
               <span className={styles.unselectable}>CMC: </span>
               <span id={"cmc"} className={styles.textContatiner}>
-                {cardDetails.cmc}
+                {cardDetails?.cmc}
               </span>
             </span>
           </div>
@@ -123,13 +133,13 @@ const CardTemplate = () => {
             <span>
               <span className={styles.unselectable}>Card Type: </span>
               <span id={"type"} className={styles.textContatiner}>
-                {cardDetails.type_line}
+                {cardDetails?.type_line}
               </span>
             </span>
             <span>
               <span className={styles.unselectable}>Set: </span>
               <span id={"set"} className={styles.textContatiner}>
-                {cardDetails.set.toLocaleUpperCase()}
+                {cardDetails?.set.toLocaleUpperCase()}
               </span>
             </span>
           </div>
@@ -137,19 +147,20 @@ const CardTemplate = () => {
           <div className={styles.text}>
             <span className={styles.unselectable}>Text: </span>
             <p id={"oracle"} className={styles.textContatiner}>
-              {parseSpaceFunction(cardDetails.oracle_text)}
+              {parseSpaceFunction(cardDetails?.oracle_text)}
             </p>
           </div>
           </div>
         </div>
         <div className={styles.rightContainer}>
           <div className={styles.imageContainer}>
-            <img src={cardDetails.image_uris.normal}></img>
+            <img src={cardDetails?.image_uris.normal}></img>
           </div>
         </div>
-      </div>
+      </div>)}
     </>
   );
 };
+
 
 export default CardTemplate;

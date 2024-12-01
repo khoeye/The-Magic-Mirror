@@ -14,7 +14,7 @@ const inputHandler = (value) => {
   filterFunc(cardImport);
     }
     
- const navigate = useNavigate()
+const navigate = useNavigate()
 const filterFunc = async (Arr) => {
 if (Arr.data){
   const mapArr = Arr.data.map((data, id) => <li key={id} onClick={(event) => cardResultHandler(event)}>{data}</li> )
