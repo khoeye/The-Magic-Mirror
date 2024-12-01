@@ -1,10 +1,10 @@
-import React, {Fragment} from "react"
+import React from "react"
 import styles from "./home.module.css"
 import Hero from "../hero/hero"
 import CardSearch from "../cardSearch/cardSearch"
 
 const HomePage = () => {
-    return[
+    return [
         <>
         <div className={styles.headerContainer}>
             <Hero home={true} advancedSearch={true}/>
