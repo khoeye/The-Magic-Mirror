@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from '../features/counterSlice'
+import selectedCardDataReducer from "../features/selectedCardSlice";
 
 
 export default configureStore({
   reducer: {
-        counter: counterReducer,
+    selectedCardData: selectedCardDataReducer,
   },
-})
+});
